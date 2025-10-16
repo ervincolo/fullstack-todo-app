@@ -1,8 +1,10 @@
-import express from 'express';
+import express from "express";
+import "./db.js";
+
 const app = express();
-const PORT = 5000;
+app.use(express.json());
 
-app.get('/', (req,res) => res.send('Backend radi'));
+app.get("/", (req, res) => res.send("Server radi i MongoDB je povezan!"));
 
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`Server radi na portu ${PORT}`));
-

@@ -1,8 +1,0 @@
-# Node modules
-frontend/node_modules
-
-#Build folder
-frontend/Build
-
-#VS Code Settings
-.vscode/

@@ -1,16 +1,13 @@
-# React + Vite
+English Version =>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a fullstack application using React for the frontend and Node.js with Express for the backend.
+The frontend and backend are organized in separate folders (frontend/ and backend/).
+The backend provides a REST API that the frontend can use to send and receive data.
+The project is ready for local development and can be extended with additional features or deployment.
 
-Currently, two official plugins are available:
+German Version =>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Dieses Projekt ist eine Fullstack-Anwendung, die React für das Frontend und Node.js mit Express für das Backend verwendet.
+Frontend und Backend sind in separaten Ordnern organisiert (frontend/ und backend/).
+Das Backend stellt eine REST-API bereit, die das Frontend zum Senden und Empfangen von Daten nutzen kann.
+Das Projekt ist für die lokale Entwicklung bereit und kann mit zusätzlichen Funktionen oder für das Deployment erweitert werden.

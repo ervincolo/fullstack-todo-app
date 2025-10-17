@@ -1,10 +1,20 @@
+//ucitava express
+//registruje rute
+//poveze se sa bazom (MongoDB)
+//pokrece server na zeljenom portu
+
 import express from "express";
-import "./db.js";
+import "./db.js"; // importovana MongoDB baza kako bi se mogli modeli koristiti unutar
+import taskRoutes from './routes/tasks.js';
 
 const app = express();
-app.use(express.json());
+app.use(express.json()); //cita req.body
 
-app.get("/", (req, res) => res.send("Server radi i MongoDB je povezan!"));
+app.use('/tasks', taskRoutes); //registrovane task rute
+
+app.get("/", (req, res) => res.send("Server is working, mongoDB connected"));
 
 const PORT = process.env.PORT || 4000;
-app.listen(PORT, () => console.log(`Server radi na portu ${PORT}`));
+app.listen(PORT, () => console.log(`Server listening on port: ${PORT}`));
+
+export default app;

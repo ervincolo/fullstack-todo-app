@@ -1,4 +1,5 @@
 //ovdje idu svi api (endpoints za taskove)!
+
 import express, { Router } from 'express';
 import Task from '../models/Task.js';
 
@@ -28,7 +29,7 @@ router.post('/', async (req, res) => {
 
 // izbrisi task ruta
 // DELTETE task
-router.delete('/', async (req, res) => {
+router.delete('/:id', async (req, res) => {
     try {
         await Task.findByIdAndDelete(req.params.id);
         res.json({message: 'Task deleted'});

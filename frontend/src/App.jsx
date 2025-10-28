@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {use, useEffect, useState} from 'react';
 import './App.css'
 
 // tasks, drzi listu svih taskova koje si dodao ili ucitao.
@@ -6,6 +6,8 @@ import './App.css'
 function App() {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState('');
+  const [editedTask, setNewEditTask] = useState('');
+  const [editingId, setEditingId] = useState(null);
 
   // useEffect(() => {
   //   fetch("http://localhost:4000/tasks")  //salje zahtjev na ovaj URL i vraca promise a .then ga obradjuje
@@ -29,7 +31,7 @@ function App() {
 // }, []);
 
 
-// Adding The Task  
+// Adding The Task.
 const handleAddTask = async () => {
     if (!newTask) 
     return; //do not do anything if empty (ako je prazno ne radi nista) tj falsy value.
@@ -48,7 +50,7 @@ const handleAddTask = async () => {
     console.error(err);
   }
 };
-// Deleting The Added Task
+// Deleting The Added Task.
 const handleDltTask = async (id) => {
   try {
     const res = await fetch(`http://localhost:4000/tasks/${id}`, {
@@ -59,33 +61,76 @@ const handleDltTask = async (id) => {
     });
     const data = await res.json();
     console.log(data);
-    setTasks(tasks.filter(task => task._id !== id));
+    setTasks(tasks.filter(task => task._id !== id)); //
   } catch (err)
  {
   console.error(err);
  }};
 
+ // Editing the added task.
+ const handleEditTask = async (id) => {
+
+  try {
+    const res = await fetch(`http://localhost:4000/tasks/${id}`, {
+      method: 'PATCH',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({title: editedTask})
+    });
+    const data = await res.json();
+    console.log(data);
+
+    //here i need to finish editing task function
+    //ovdje zavrsiti edit funkciju
+    
+
+  } catch (err) {
+    console.error(err);
+  }};
+
   // here (after return) comes everything that you want to see in browser (UI-rendering).
+  // ovdje poslije returna dolazi frontend tj klijent strana (UI).
+
     return (
     <>
      <div className="main-container">
       <h1>My Tasks</h1>
-          <button className='addBtn' onClick={handleAddTask}>ADD</button>
+
+  
+      <button className='addBtn' onClick={handleAddTask}>ADD</button>
       <div className="input-tasks">
        <input type="text"
         placeholder='Add New Task..'
         value= {newTask} 
         onChange={ e => setNewTask(e.target.value)} //ovo hvata unos taska.
       />
+
+  
       <ul>
-        {tasks.map(task => 
+        {tasks.map(task => //vraca novi array od tasks
           <li key={task._id}>
             {task.title}
-          <button className='dltBtn' onClick={() => handleDltTask(task._id)}>DEL</button>
+
+          <button className='dltBtn' onClick={() => handleDltTask(task._id)}>
+            DELETE
+          </button>
+
+          <button className='editBtn' onClick={() => setEditingId(task._id)}>
+            EDIT
+          </button>
+
+          {editingId === task._id && (
+            <input 
+            type='text'
+            value={editedTask}
+            onChange={e => setNewEditTask(e.target.value)}
+            />
+          )}
           </li>
         )}
-      </ul>
-  
+        </ul>
+
+      
+      
      </div>
     </div>
   </>

@@ -9,31 +9,12 @@ function App() {
   const [editedCurrentTask, setNewEditTask] = useState("");
   const [editingId, setEditingId] = useState(null);
 
-  // useEffect(() => {
-  //   fetch("http://localhost:4000/tasks")  //salje zahtjev na ovaj URL i vraca promise a .then ga obradjuje
-  //   .then(res => res.json())
-  //   .then(data => setTasks(data))
-  //   .catch(err => console.err(err));
-  // }, []);
-
-  //drugi nacin => second and more understandable way
-  //   useEffect(() => {
-  //     const fetchTasks = async () => {
-  //       try {
-  //         const res = await fetch("http://localhost:4000/tasks");
-  //         const data = await res.json();
-  //         setTasks(data);
-  //       } catch (err) {
-  //         console.err(err);
-  //       }
-  //   };
-  //   fetchTasks();
-  // }, []);
-
   // Adding The Task.
   const handleAddTask = async () => {
-    if (!newTask) return; //do not do anything if empty (ako je prazno ne radi nista) tj falsy value.
-
+    if (!newTask) {
+      alert("Please add your task"); // must enter the task..
+      return; //do not do anything if empty (ako je prazno ne radi nista) tj falsy value.
+    }
     try {
       const res = await fetch("http://localhost:4000/tasks", {
         method: "POST",
